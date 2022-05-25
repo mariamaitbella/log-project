@@ -5,7 +5,7 @@ const { black, white, tertiary, success, fail } = colors;
 
 const MsgBox = (props: any) => {
   return (
-    <Text textAlign="center" color={props.success ? success : fail} fontSize="sm">
+    <Text mb={3}   textAlign="center" color={props.success ? success : fail} fontSize="sm">
       {props.children}
     </Text>
   );

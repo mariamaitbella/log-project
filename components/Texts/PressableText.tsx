@@ -1,15 +1,17 @@
 import React from "react";
-import { Text } from "native-base";
+import {  Pressable, Text } from "native-base";
 import { colors } from "../colors";
-const {black, white, tertiary } = colors;
+const { black, white, tertiary, accent } = colors;
 
-
-const SmallText = (props: any) => {
+const PressabelText = (props: any) => {
   return (
-    <Text textAlign="left" color={tertiary}  fontSize="sm">
-      {props.children}
-    </Text>
+    <Pressable
+      onPress={() => {props.onPress}}
+      p={2}
+    >
+      <Text color={accent}>{props.children}</Text>
+    </Pressable>
   );
 };
 
-export default SmallText;
+export default PressabelText;

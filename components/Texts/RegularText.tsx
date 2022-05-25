@@ -6,7 +6,7 @@ const {black, white, tertiary } = colors;
 
 const RegularText = (props: any) => {
   return (
-    <Text mt={7} mb={9} textAlign="left" color={tertiary}  fontSize="md">
+    <Text mb={6} color={tertiary}  fontSize="md">
       {props.children}
     </Text>
   );
