@@ -1,27 +1,20 @@
 import React, { FunctionComponent, useState } from "react";
-import {
-  Button,
-  Center,
-  Container,
-  Icon,
-  Input,
-  Text,
-  extendTheme,
-} from "native-base";
+import { Button, Center, Modal, Text } from "native-base";
+import { Dimensions } from "react-native";
 import { colors } from "../components/colors";
-const { white, primary, secondary, accent, black } = colors;
+const { accent } = colors;
 import KeyboardAvoidingContainer from "../components/Containers/KeyboardAvoidingContainer";
 import RegularText from "../components/Texts/RegularText";
 import TextInput from "../components/Inputs/TextInput";
 import { Formik } from "formik";
 import MsgBox from "../components/Texts/MsgBox";
-import { SubmitButton } from "@native-base/formik-ui";
-import PressabelText from "../components/Texts/PressableText";
-import RowContainer from "../components/Containers/RowContainer";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Header } from "react-native/Libraries/NewAppScreen";
+
+const windowHeight = Dimensions.get("window").height;
 
 const ResetPassword: FunctionComponent = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const [message, setMessage] = useState("");
   const [isSuccessMessage, setisSuccessMessage] = useState(false);
 
@@ -57,6 +50,7 @@ const ResetPassword: FunctionComponent = () => {
               setSubmitting(false);
             } else {
               handleOnSubmit(values, setSubmitting);
+              setShowModal(true);
             }
           }}
         >
@@ -100,6 +94,31 @@ const ResetPassword: FunctionComponent = () => {
                   <Text fontSize="md">Submit</Text>
                 </Button>
               )}
+              <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Content
+                  height={windowHeight * 0.35}
+                  maxHeight={windowHeight}
+                >
+                  <Modal.CloseButton />
+                  <Modal.Body>
+                    <Center>
+                      <Text fontSize="3xl">All Good!</Text>{" "}
+                      <Text fontSize="lg">Your password has been reset!</Text>
+                    </Center>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button.Group variant="ghost" space={2}>
+                      <Button
+                        onPress={() => {
+                          setShowModal(false);
+                        }}
+                      >
+                        PROCEED
+                      </Button>
+                    </Button.Group>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
             </>
           )}
         </Formik>
