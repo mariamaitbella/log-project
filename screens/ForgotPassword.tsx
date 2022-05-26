@@ -1,13 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Heading,
-  StatusBar,
-  Text,
-} from "native-base";
+import { Button, Center, Container, Icon, Input, Text } from "native-base";
 import { colors } from "../components/colors";
 const { white, primary, secondary, accent, black } = colors;
 import KeyboardAvoidingContainer from "../components/Containers/KeyboardAvoidingContainer";
@@ -18,35 +10,41 @@ import MsgBox from "../components/Texts/MsgBox";
 import { SubmitButton } from "@native-base/formik-ui";
 import PressabelText from "../components/Texts/PressableText";
 import RowContainer from "../components/Containers/RowContainer";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Header } from "react-native/Libraries/NewAppScreen";
 
-const Login: FunctionComponent = () => {
+const ForgotPassword: FunctionComponent = () => {
   const [message, setMessage] = useState("");
   const [isSuccessMessage, setisSuccessMessage] = useState(false);
 
-  const handleLogin = async (credentials: any, setSubmiting: any) => {
+  const handleOnSubmit = async (credentials: any, setSubmiting: any) => {
     try {
       setMessage(" ");
       //backend
       //move to next page
       setSubmiting(false);
     } catch (error: any) {
-      setMessage("Login failed" + error.message);
+      setMessage("Request failed" + error.message);
       setSubmiting(false);
     }
   };
-
+  // <MaterialCommunityIcons name="lock-open-outline" size={24} color="black" />
   return (
-    <KeyboardAvoidingContainer>
-      <>
-        <RegularText>Enter your account credentials</RegularText>
+    <>
+      <Ionicons name="key" size={150} color={accent} />
+      <KeyboardAvoidingContainer>
+        <Center mt={4}>
+          <RegularText>Provide details</RegularText>
+        </Center>
+
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: "" }}
           onSubmit={(values, { setSubmitting }) => {
-            if (values.email == "" || values.password == "") {
+            if (values.email == "") {
               setMessage("Please fill in all fields");
               setSubmitting(false);
             } else {
-              handleLogin(values, setSubmitting);
+              handleOnSubmit(values, setSubmitting);
             }
           }}
         >
@@ -55,21 +53,15 @@ const Login: FunctionComponent = () => {
               <TextInput
                 label="Email Address"
                 placeHolder="Email"
+                keyboardType="email-address"
                 onChangeText={handleChange("email")}
                 value={values.email}
-                isPassword={false}
               />
-              <TextInput
-                label="Password"
-                placeHolder="* * * * * * * *"
-                onChangeText={handleChange("password")}
-                value={values.password}
-                isPassword={true}
-              />
+
               <MsgBox success={isSuccessMessage}>{message || ""}</MsgBox>
               {!isSubmitting && (
                 <SubmitButton h={12} bg={accent} borderRadius={5} size={"lg"}>
-                  <Text fontSize="md">Login</Text>
+                  <Text fontSize="md">Submit</Text>
                 </SubmitButton>
               )}
               {isSubmitting && (
@@ -80,22 +72,21 @@ const Login: FunctionComponent = () => {
                   borderRadius={5}
                   size={"lg"}
                 >
-                  <Text fontSize="md">Login</Text>
+                  <Text fontSize="md">ForgotPassword</Text>
                 </Button>
               )}
-              <RowContainer>
-                <PressabelText onPress={() => {}}>
-                  New account Sign up
-                </PressabelText>
-                <PressabelText onPress={() => {}}>
-                  Forgot password
-                </PressabelText>
-              </RowContainer>
+              <PressabelText
+                onPress={() => {
+                  //send link of verification to the email
+                }}
+              >
+                Resend verification link
+              </PressabelText>
             </>
           )}
         </Formik>
-      </>
-    </KeyboardAvoidingContainer>
+      </KeyboardAvoidingContainer>
+    </>
   );
 };
-export default Login;
+export default ForgotPassword;

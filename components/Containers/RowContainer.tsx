@@ -1,7 +1,5 @@
 import React from "react";
-import { Container, HStack, Box } from "native-base";
-import { colors } from "../colors";
-const { primary, secondary } = colors;
+import {  HStack } from "native-base";
 
 export default function RowContainer(props: any) {
   return (
