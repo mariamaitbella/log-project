@@ -9,7 +9,7 @@ export default function TextInput({ isPassword, ...props }: any) {
     <>
       <SmallText>{props.label}</SmallText>
       <Input
-        {...props}
+      {...props}
         size="lg"
         w="100%"
         mb={5}

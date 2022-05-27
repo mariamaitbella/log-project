@@ -18,6 +18,7 @@ import MsgBox from "../components/Texts/MsgBox";
 import { SubmitButton } from "@native-base/formik-ui";
 import PressabelText from "../components/Texts/PressableText";
 import RowContainer from "../components/Containers/RowContainer";
+import MainContainer from "../components/Containers/MainContainer";
 
 const Login: FunctionComponent = () => {
   const [message, setMessage] = useState("");
@@ -36,8 +37,8 @@ const Login: FunctionComponent = () => {
   };
 
   return (
-    <KeyboardAvoidingContainer>
       <>
+      <MainContainer>
         <RegularText>Enter your account credentials</RegularText>
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -94,8 +95,8 @@ const Login: FunctionComponent = () => {
             </>
           )}
         </Formik>
+        </MainContainer>
       </>
-    </KeyboardAvoidingContainer>
   );
 };
 export default Login;

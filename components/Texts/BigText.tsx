@@ -1,14 +1,20 @@
-import React,{ FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { Text } from "native-base";
 import { colors } from "../colors";
-const { black, white, tertiary } = colors;
+const { tertiary } = colors;
 
-const SmallText: FunctionComponent  = (props: any) => {
+const BigText: FunctionComponent = (props: any) => {
   return (
-    <Text textAlign="left" color={tertiary} fontSize="lg" {...props}>
+    <Text
+      mb={props.mb}
+      textAlign="left"
+      color={tertiary}
+      fontSize="3xl"
+      fontWeight="bold"
+    >
       {props.children}
     </Text>
   );
 };
 
-export default SmallText;
+export default BigText;
