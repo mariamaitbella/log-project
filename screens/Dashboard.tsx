@@ -3,14 +3,10 @@ import { View } from "native-base";
 import MainContainer from "../components/Containers/MainContainer";
 import BigText from "../components/Texts/BigText";
 import { colors } from "../components/colors";
-import Constants from "expo-constants";
-import { Dimensions } from "react-native";
 import InfoCard from "../components/Cards/InfoCard";
 
-export const StatusBarHeight = Constants.statusBarHeight;
-export const ScreenWidth = Dimensions.get("screen").width;
-export const ScreenHeight = Dimensions.get("screen").height;
-
+import { ScreenHeight } from "../components/shared";
+import { ScreenWidth } from "../components/shared";
 const { white, primary, secondary, accent, black, darkGray } = colors;
 
 const TopBg = () => {
@@ -32,12 +28,12 @@ const Dashboard = () => {
       <MainContainer style={{ paddingTop: 0, paddingLeft: 0, paddingRight: 0 }}>
         <TopBg />
         <MainContainer bg="transparent">
-          <BigText mb="25">Hello, Mimi!</BigText>
+          <BigText>Hello, Mimi!</BigText>
           <InfoCard
             icon="chart-timeline-variant"
             title="Balance"
             value="13,288.84"
-            date="23/05/2022"
+            date="27/05/2022"
           />
           <InfoCard
             icon="chart-arc"

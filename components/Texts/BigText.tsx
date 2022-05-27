@@ -6,7 +6,6 @@ const { tertiary } = colors;
 const BigText: FunctionComponent = (props: any) => {
   return (
     <Text
-      mb={props.mb}
       textAlign="left"
       color={tertiary}
       fontSize="3xl"

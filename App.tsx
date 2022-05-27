@@ -1,8 +1,8 @@
-import React from "react";
-import Dashboard from "./screens/Dashboard";
+import * as React from "react";
 import { NativeBaseProvider, Text, Box, StatusBar, Center } from "native-base";
 import { SafeAreaView } from "react-native";
 import { colors } from "./components/colors";
+import RootStack from "./navigators/RootStack";
 const { primary } = colors;
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <StatusBar barStyle={"light-content"} />
-      <Dashboard />
+      <RootStack />
     </NativeBaseProvider>
   );
 }

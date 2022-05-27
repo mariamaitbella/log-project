@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
+import * as React from "react";
+import { FunctionComponent, useState } from "react";
 import { Button, Center, Container, Icon, Input, Text } from "native-base";
 import { colors } from "../components/colors";
 const { white, primary, secondary, accent, black } = colors;

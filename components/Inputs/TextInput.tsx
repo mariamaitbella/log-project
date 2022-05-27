@@ -4,6 +4,7 @@ import { colors } from "../colors";
 const { primary, secondary, white } = colors;
 import SmallText from "../Texts/SmallText";
 
+
 export default function TextInput({ isPassword, ...props }: any) {
   return (
     <>

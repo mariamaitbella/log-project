@@ -9,7 +9,8 @@ import TextInput from "../components/Inputs/TextInput";
 import { Formik } from "formik";
 import MsgBox from "../components/Texts/MsgBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import MainContainer from "../components/Containers/MainContainer";
+import { MaterialIcons } from "@expo/vector-icons";
 const windowHeight = Dimensions.get("window").height;
 
 const ResetPassword: FunctionComponent = () => {
@@ -33,9 +34,9 @@ const ResetPassword: FunctionComponent = () => {
   // <MaterialCommunityIcons name="lock-open-outline" size={24} color="black" />
   return (
     <>
-      <Ionicons name="key" size={150} color={accent} />
-      <KeyboardAvoidingContainer>
-        <Center mt={4}>
+      <MainContainer>
+        <Center>
+          <MaterialIcons name="vpn-key" size={150} color={accent} />
           <RegularText>Provide details</RegularText>
         </Center>
 
@@ -122,7 +123,7 @@ const ResetPassword: FunctionComponent = () => {
             </>
           )}
         </Formik>
-      </KeyboardAvoidingContainer>
+      </MainContainer>
     </>
   );
 };

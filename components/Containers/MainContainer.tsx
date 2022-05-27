@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Center, View } from "native-base";
 
 //styled components
@@ -7,7 +7,7 @@ const { primary } = colors;
 
 const MainContainer = (props: any) => {
   return (
-    <View bg={props.bg || primary} p={3} flex={1}>
+    <View bg={props.bg || primary} p={6} flex={1}>
       {props.children}
     </View>
   );

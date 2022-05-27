@@ -1,11 +1,9 @@
-import React, { FunctionComponent, useState } from "react";
+import * as React from "react";
+
+import { FunctionComponent, useState } from "react";
 import {
   Box,
   Button,
-  Center,
-  Container,
-  Heading,
-  StatusBar,
   Text,
 } from "native-base";
 import { colors } from "../components/colors";
@@ -37,9 +35,9 @@ const Login: FunctionComponent = () => {
   };
 
   return (
-      <>
+    <>
       <MainContainer>
-        <RegularText>Enter your account credentials</RegularText>
+        <RegularText style={{ marginBottom: 35 }}>Enter your account credentials</RegularText>
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -95,8 +93,8 @@ const Login: FunctionComponent = () => {
             </>
           )}
         </Formik>
-        </MainContainer>
-      </>
+      </MainContainer>
+    </>
   );
 };
 export default Login;
