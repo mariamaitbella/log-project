@@ -10,20 +10,22 @@ import { Formik } from "formik";
 import MsgBox from "../components/Texts/MsgBox";
 import { SubmitButton } from "@native-base/formik-ui";
 import PressabelText from "../components/Texts/PressableText";
-import RowContainer from "../components/Containers/RowContainer";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Header } from "react-native/Libraries/NewAppScreen";
+import MainContainer from "../components/Containers/MainContainer";
 
-const ForgotPassword: FunctionComponent = () => {
+const ForgotPassword: FunctionComponent = (props: any) => {
   const [message, setMessage] = useState("");
   const [isSuccessMessage, setisSuccessMessage] = useState(false);
-
+  const moveTo = (screen: any) => {
+    props.navigation.navigate(screen);
+  };
   const handleOnSubmit = async (credentials: any, setSubmiting: any) => {
     try {
       setMessage(" ");
       //backend
       //move to next page
       setSubmiting(false);
+      moveTo("ResetPassword");
     } catch (error: any) {
       setMessage("Request failed" + error.message);
       setSubmiting(false);
@@ -32,12 +34,11 @@ const ForgotPassword: FunctionComponent = () => {
   // <MaterialCommunityIcons name="lock-open-outline" size={24} color="black" />
   return (
     <>
-      <Ionicons name="key" size={150} color={accent} />
-      <KeyboardAvoidingContainer>
+      <MainContainer>
         <Center mt={4}>
+          <Ionicons name="key" size={150} color={accent} />
           <RegularText>Provide details</RegularText>
         </Center>
-
         <Formik
           initialValues={{ email: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -86,7 +87,7 @@ const ForgotPassword: FunctionComponent = () => {
             </>
           )}
         </Formik>
-      </KeyboardAvoidingContainer>
+      </MainContainer>
     </>
   );
 };

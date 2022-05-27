@@ -13,9 +13,11 @@ import MainContainer from "../components/Containers/MainContainer";
 import { MaterialIcons } from "@expo/vector-icons";
 const windowHeight = Dimensions.get("window").height;
 
-const ResetPassword: FunctionComponent = () => {
+const ResetPassword: FunctionComponent = (props: any) => {
   const [showModal, setShowModal] = useState(false);
-
+  const moveTo = (screen: any) => {
+    props.navigation.navigate(screen);
+  };
   const [message, setMessage] = useState("");
   const [isSuccessMessage, setisSuccessMessage] = useState(false);
 
@@ -24,6 +26,8 @@ const ResetPassword: FunctionComponent = () => {
       setMessage(" ");
       //backend
       //move to next page
+      moveTo("Login");
+
       setSubmiting(false);
       //   setSubmiting(true); normally
     } catch (error: any) {

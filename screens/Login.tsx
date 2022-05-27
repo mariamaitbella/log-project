@@ -1,11 +1,7 @@
 import * as React from "react";
 
 import { FunctionComponent, useState } from "react";
-import {
-  Box,
-  Button,
-  Text,
-} from "native-base";
+import { Box, Button, Pressable, Text } from "native-base";
 import { colors } from "../components/colors";
 const { white, primary, secondary, accent, black } = colors;
 import KeyboardAvoidingContainer from "../components/Containers/KeyboardAvoidingContainer";
@@ -18,15 +14,18 @@ import PressabelText from "../components/Texts/PressableText";
 import RowContainer from "../components/Containers/RowContainer";
 import MainContainer from "../components/Containers/MainContainer";
 
-const Login: FunctionComponent = () => {
+const Login = (props: any) => {
   const [message, setMessage] = useState("");
   const [isSuccessMessage, setisSuccessMessage] = useState(false);
-
+  const moveTo = (screen: any) => {
+    props.navigation.navigate(screen);
+  };
   const handleLogin = async (credentials: any, setSubmiting: any) => {
     try {
       setMessage(" ");
       //backend
       //move to next page
+      moveTo("Dashboard");
       setSubmiting(false);
     } catch (error: any) {
       setMessage("Login failed" + error.message);
@@ -37,7 +36,9 @@ const Login: FunctionComponent = () => {
   return (
     <>
       <MainContainer>
-        <RegularText style={{ marginBottom: 35 }}>Enter your account credentials</RegularText>
+        <RegularText style={{ marginBottom: 35 }}>
+          Enter your account credentials
+        </RegularText>
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -82,17 +83,27 @@ const Login: FunctionComponent = () => {
                   <Text fontSize="md">Login</Text>
                 </Button>
               )}
-              <RowContainer>
-                <PressabelText onPress={() => {}}>
-                  New account Sign up
-                </PressabelText>
-                <PressabelText onPress={() => {}}>
-                  Forgot password
-                </PressabelText>
-              </RowContainer>
             </>
           )}
         </Formik>
+        <RowContainer>
+          <Pressable
+            p={2}
+            onPress={() => {
+              moveTo("Signup");
+            }}
+          >
+            <Text color={accent}> New account Sign up</Text>
+          </Pressable>
+          <Pressable
+            p={2}
+            onPress={() => {
+              moveTo("ForgotPassword");
+            }}
+          >
+            <Text color={accent}> Forgot password</Text>
+          </Pressable>
+        </RowContainer>
       </MainContainer>
     </>
   );

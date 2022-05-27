@@ -5,12 +5,7 @@ const { accent } = colors;
 
 const PressabelText = (props: any) => {
   return (
-    <Pressable
-      onPress={() => {
-        props.onPress;
-      }}
-      p={2}
-    >
+    <Pressable p={2}>
       <Text color={accent}>{props.children}</Text>
     </Pressable>
   );
