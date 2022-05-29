@@ -10,6 +10,7 @@ export default function TextInput({ isPassword, ...props }: any) {
       <SmallText>{props.label}</SmallText>
       <Input
         {...props}
+        isDisabled={!props.pinReady}
         size="lg"
         w="100%"
         mb={5}

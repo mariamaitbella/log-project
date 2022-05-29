@@ -11,16 +11,21 @@ import MsgBox from "../components/Texts/MsgBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MainContainer from "../components/Containers/MainContainer";
 import { MaterialIcons } from "@expo/vector-icons";
+import OTPInputField from "../components/OTPInputField";
+import SmallText from "../components/Texts/SmallText";
 const windowHeight = Dimensions.get("window").height;
 
 const ResetPassword: FunctionComponent = (props: any) => {
   const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isSuccessMessage, setisSuccessMessage] = useState(false);
+  const [code, setCode] = useState("");
+  const [pinReady, setPinReady] = useState(false);
+  const MAX_CODE_LENGTH = 4;
+
   const moveTo = (screen: any) => {
     props.navigation.navigate(screen);
   };
-  const [message, setMessage] = useState("");
-  const [isSuccessMessage, setisSuccessMessage] = useState(false);
-
   const handleOnSubmit = async (credentials: any, setSubmiting: any) => {
     try {
       setMessage(" ");
@@ -40,10 +45,23 @@ const ResetPassword: FunctionComponent = (props: any) => {
     <>
       <MainContainer>
         <Center>
-          <MaterialIcons name="vpn-key" size={150} color={accent} />
-          <RegularText>Provide details</RegularText>
-        </Center>
+          <SmallText>Enter the 4-digit code sent to your email </SmallText>
+          <Text></Text>
+          <OTPInputField
+            setPinReady={setPinReady}
+            code={code}
+            setCode={setCode}
+            maxLength={MAX_CODE_LENGTH}
+          />
 
+          {/* <MaterialIcons name="vpn-key" size={150} color={accent} /> */}
+          <SmallText>
+            Didn't receive the code? <Text color={accent}>Resend</Text>
+          </SmallText>
+          <Text></Text>
+          <SmallText>Provide details</SmallText>
+        </Center>
+        <Text></Text>
         <Formik
           initialValues={{ newPassword: "", confirmNewPassword: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -67,6 +85,7 @@ const ResetPassword: FunctionComponent = (props: any) => {
                 onChangeText={handleChange("newPassword")}
                 value={values.newPassword}
                 isPassword={true}
+                pinReady={pinReady}
               />
               <TextInput
                 label="Confirm New Password"
@@ -74,11 +93,13 @@ const ResetPassword: FunctionComponent = (props: any) => {
                 onChangeText={handleChange("confirmNewPassword")}
                 value={values.confirmNewPassword}
                 isPassword={true}
+                pinReady={pinReady}
               />
 
               <MsgBox success={isSuccessMessage}>{message || ""}</MsgBox>
               {!isSubmitting && (
                 <Button
+                  isDisabled={!pinReady}
                   onPress={() => handleSubmit()}
                   h={12}
                   bg={accent}
@@ -89,13 +110,7 @@ const ResetPassword: FunctionComponent = (props: any) => {
                 </Button>
               )}
               {isSubmitting && (
-                <Button
-                  // disabled={true}
-                  isLoading
-                  h={12}
-                  borderRadius={5}
-                  size={"lg"}
-                >
+                <Button isLoading h={12} borderRadius={5} size={"lg"}>
                   <Text fontSize="md">Submit</Text>
                 </Button>
               )}
